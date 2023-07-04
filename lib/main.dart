@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 void main() {
@@ -25,21 +24,28 @@ class RecipeScreen extends StatefulWidget {
 }
 
 class _RecipeScreenState extends State<RecipeScreen> {
-  List<String> recipes = [
-    'Pasta',
-    'Pizza',
-    'Salad',
-    'Soup',
-    'Burger',
-    'Stir-fry',
-    'Sandwich',
+  List<Recipe> recipes = [
+    Recipe(
+      name: 'Pasta',
+      instructions:
+          'Boil water in a large pot. Add salt and pasta to the boiling water. Cook the pasta until al dente. Drain the cooked pasta. Serve with your favorite sauce and toppings.',
+    ),
+    Recipe(
+      name: 'Pizza',
+      instructions:
+          'Preheat the oven to the desired temperature. Roll out the pizza dough on a floured surface. Add your favorite sauce and toppings to the dough. Transfer the pizza to a baking sheet or pizza stone. Bake in the preheated oven for the specified time. Remove from the oven and let it cool slightly before slicing.',
+    ),
+    // Add more recipes following the same structure
   ];
-  String selectedRecipe = '';
+
+  Recipe? selectedRecipe;
 
   void selectRandomRecipe() {
     final random = Random();
     final index = random.nextInt(recipes.length);
+
     setState(() {
+      selectedRecipe = recipes[index];
       selectedRecipe = recipes[index];
     });
   }
@@ -48,25 +54,41 @@ class _RecipeScreenState extends State<RecipeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Recipe App'),
+        title: const Text('Recipe App'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            if (selectedRecipe.isNotEmpty)
-              Text(
-                selectedRecipe,
-                style: TextStyle(fontSize: 24),
+            if (selectedRecipe != null)
+              Column(
+                children: [
+                  Text(
+                    selectedRecipe!.name,
+                    style: const TextStyle(fontSize: 24),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    selectedRecipe!.instructions,
+                    style: const TextStyle(fontSize: 16),
+                  ),
+                ],
               ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: selectRandomRecipe,
-              child: Text('Choose a Recipe'),
+              child: const Text('Choose a Recipe'),
             ),
           ],
         ),
       ),
     );
   }
+}
+
+class Recipe {
+  final String name;
+  final String instructions;
+
+  Recipe({required this.name, required this.instructions});
 }
