@@ -72,9 +72,14 @@ class _RecipeScreenState extends State<RecipeScreen> {
                     width: 200,
                   ),
                   const SizedBox(height: 10),
-                  Text(
-                    selectedRecipe!.instructions,
-                    style: const TextStyle(fontSize: 16),
+                  Container(
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Text(
+                      selectedRecipe!.instructions,
+                      style: const TextStyle(fontSize: 16),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ],
               ),
