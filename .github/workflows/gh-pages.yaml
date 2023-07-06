@@ -15,7 +15,7 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
       - name: Build web app
-        run: flutter build web --release --base-href /dinner-dice/
+        run: flutter build web --release --base-href /dinner_dice/
       - name: Configure Git, commit, and push
         run: |
           git config user.name github-actions
