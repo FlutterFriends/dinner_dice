@@ -66,10 +66,16 @@ class _RecipeScreenState extends State<RecipeScreen> {
                     style: const TextStyle(fontSize: 24),
                   ),
                   const SizedBox(height: 10),
-                  Image.asset(
-                    selectedRecipe!.image,
-                    height: 200,
-                    width: 200,
+                  Container(
+                    width: 350,
+                    height: 350,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image.asset(
+                        selectedRecipe!.image,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 10),
                   Container(
